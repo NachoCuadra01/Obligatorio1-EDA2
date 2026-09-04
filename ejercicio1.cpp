@@ -26,19 +26,19 @@ struct nodoAVL{
         return altura(a->der) - altura(a->izq);
     }
 
-    Nodo * rotacionIzq(Nodo * A, Nodo * B) {
+    AVL rotacionIzq(AVL A, AVL B) {
             A->der = B->izq;
             B->izq = A;
-            ActualizarAltura(A);
-            ActualizarAltura(B);
+            actualizarAltura(A);
+            actualizarAltura(B);
             return B;
         }
 
-    Nodo * rotacionDer(Nodo * A, Nodo * B) {
+    AVL rotacionDer(AVL A, AVL B) {
         A->izq = B->der;
         B->der = A;
-        ActualizarAltura(A);
-        ActualizarAltura(B);
+        actualizarAltura(A);
+        actualizarAltura(B);
         return B;
     }
 
@@ -66,22 +66,22 @@ struct nodoAVL{
         else altaM(m->izq, c);
         actualizarAltura(m);
         int balance = calcularBalance(m);
-        if (balance > 1 && t->der->dato < x) {
-            rotacionIzq(t, t->der);
+        if (balance > 1 && m->der->catalogo < c) {
+            rotacionIzq(m, m->der);
             return;
         }
-        else if (balance > 1 && t->der->dato > x) {
-            t->der = rotacionDer(t->der, t->der->izq);
-            rotacionIzq(t, t->der);
+        else if (balance > 1 && m->der->catalogo > c) {
+            m->der = rotacionDer(m->der, m->der);
+            rotacionIzq(m, m->der);
             return;
         }
-        else if (balance < -1 && t->izq->dato > x) {
-            rotacionDer(t, t->izq);
+        else if (balance < -1 && m->izq->catalogo > c) {
+            rotacionDer(m, m->izq);
             return;
         }
-        else if (balance < -1 && t->izq->dato < x) {
-            t->izq = rotacionIzq(t->izq, t->izq->der);
-            rotacionDer(t, t->izq);
+        else if (balance < -1 && m->izq->catalogo < c) {
+            m->izq = rotacionIzq(m->izq, m->izq->der);
+            rotacionDer(m, m->izq);
             return;
         }
 
