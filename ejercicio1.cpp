@@ -5,28 +5,38 @@
 
 using namespace std;
 
-struct nodoAVL{
-    int altura;
-    string titulo;
-    int catalogo;
-    nodoAVL* izq;
-    nodoAVL* der;
-}; typedef nodoAVL* AVL;
+template <class T>
 
-    int altura(AVL a) {
-        if (!a) return 0;
-        return a->altura;
-    }
+class AVL : public Pieza<T>{
+    private:
+    public:
+        struct nodoAVL {
+            Pieza<T> dato;
+            nodoAVL* izq, *der;
+            int altura;
+            nodoAVL(Pieza<T> d) : dato(d), altura(1), izq(NULL), der(NULL); 
+        }; typedef nodoAVL* AVL;
 
-    void actualizarAltura(AVL a) {
-        a->altura = 1 + max(altura(a->izq), altura(a->der));
-    }
+        AVL crear(Pieza<T> pieza){
+            return new nodoAVL(pieza);
+        }
 
-    int calcularBalance(AVL a) {
-        return altura(a->der) - altura(a->izq);
-    }
+        int altura(AVL a){
+            if (!a) return 0;
+            return a->altura;
+        }
+        
 
-    AVL rotacionIzq(AVL A, AVL B) {
+        void actualizarAltura(AVL& a) {
+            if (!a) return;
+            a->altura = 1 + max(altura(a->izq), altura(a->der));
+        }    
+
+        int calcularBalance(AVL a) {
+            return altura(a->der) - altura(a->izq);
+        }
+       
+        AVL rotacionIzq(AVL& A, AVL& B) {
             A->der = B->izq;
             B->izq = A;
             actualizarAltura(A);
@@ -34,55 +44,52 @@ struct nodoAVL{
             return B;
         }
 
-    AVL rotacionDer(AVL A, AVL B) {
-        A->izq = B->der;
-        B->der = A;
-        actualizarAltura(A);
-        actualizarAltura(B);
-        return B;
-    }
 
-    void altaP(AVL p, string t){
-        if (!p){
-            AVL nuevo = new nodoAVL;
-            nuevo->titulo = t;
-            p = nuevo;
-        }
-        if(p->titulo == t) return;
-        else if (t> p->titulo) altaP(p->der, t);
-        else altaP(p->izq, t);
-        actualizarAltura(p);
-        int balance = calcularBalance(p);
-    }
-
-    void altaM(AVL m, int c){
-        if (!m){
-            AVL nuevo = new nodoAVL;
-            nuevo->catalogo = c;
-            m = nuevo;
-        }
-        if(m->catalogo == c) return;
-        else if (c> m->catalogo) altaM(m->der, c);
-        else altaM(m->izq, c);
-        actualizarAltura(m);
-        int balance = calcularBalance(m);
-        if (balance > 1 && m->der->catalogo < c) {
-            rotacionIzq(m, m->der);
-            return;
-        }
-        else if (balance > 1 && m->der->catalogo > c) {
-            m->der = rotacionDer(m->der, m->der);
-            rotacionIzq(m, m->der);
-            return;
-        }
-        else if (balance < -1 && m->izq->catalogo > c) {
-            rotacionDer(m, m->izq);
-            return;
-        }
-        else if (balance < -1 && m->izq->catalogo < c) {
-            m->izq = rotacionIzq(m->izq, m->izq->der);
-            rotacionDer(m, m->izq);
-            return;
+        
+        AVL rotacionDer(AVL& A, AVL& B) {
+            A->izq = B->der;
+            B->der = A;
+            actualizarAltura(A);
+            actualizarAltura(B);
+            return B;
         }
 
-    }
+        void altaP(AVL a, Pieza<T> pieza){
+            if (!a) AVL nuevo = new nodoAVL(pieza);
+            if(a->dato == pieza) return;
+            else if (pieza > a->dato) altaP(a->der, pieza);
+            else altaP(a->izq, pieza);
+            actualizarAltura(a);
+            int balance = calcularBalance(a);
+
+            if (balance > 1 && a->der->dato < pieza) {
+                a = rotacionIzq(a, a->der);
+                return;
+            }
+            else if (balance > 1 && a->der->dato > pieza) {
+                a->der = rotacionDer(a->der, a->der);
+                a = rotacionIzq(a, a->der);
+                return;
+            }
+            else if (balance < -1 && a->izq->dato > pieza) {
+                a = rotacionDer(a, a->izq);
+                return;
+            }
+            else if (balance < -1 && a->izq->catalogo < pieza) {
+                a->izq = rotacionIzq(a->izq, a->izq->der);
+                a = rotacionDer(a, a->izq);
+                return;
+            }
+        }
+
+        
+
+
+
+
+
+};
+
+
+
+
