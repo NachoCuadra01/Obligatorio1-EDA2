@@ -7,17 +7,17 @@ using namespace std;
 
 template <class T>
 
-class AVL : public Pieza<T>{
+class AVL{
     private:
     public:
         struct nodoAVL {
-            Pieza<T> dato;
+            T dato;
             nodoAVL* izq, *der;
             int altura;
-            nodoAVL(Pieza<T> d) : dato(d), altura(1), izq(NULL), der(NULL); 
+            nodoAVL(T d) : dato(d), altura(1), izq(NULL), der(NULL); 
         }; typedef nodoAVL* AVL;
 
-        AVL crear(Pieza<T> pieza){
+        AVL crear(T pieza){
             return new nodoAVL(pieza);
         }
 
@@ -54,7 +54,7 @@ class AVL : public Pieza<T>{
             return B;
         }
 
-        void altaP(AVL a, Pieza<T> pieza){
+        void altaP(AVL a, T pieza){
             if (!a) AVL nuevo = new nodoAVL(pieza);
             if(a->dato == pieza) return;
             else if (pieza > a->dato) altaP(a->der, pieza);
