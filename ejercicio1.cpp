@@ -83,7 +83,21 @@ class AVL{
         }
 
         
+        char* buscar(AVL a, T pieza){ 
+            if (!a) return "no";
+            if (a->dato == pieza) return "si";
+            if (a->dato > pieza) return buscar(a->izq, pieza);
+            else return buscar(a->der, pieza);
+        }
 
+
+        T rango(AVL a,T desde,T hasta){
+            if (!a) return "";
+
+
+
+
+        }
 
 
 
