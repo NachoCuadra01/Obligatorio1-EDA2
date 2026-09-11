@@ -9,7 +9,7 @@ template <class T>
 
 class AVLbalanceado{
     private:
-    //falta algo aca
+    AVL raiz;
     public:
         struct nodoAVL {
             T dato;
@@ -18,8 +18,14 @@ class AVLbalanceado{
             nodoAVL(T d) : dato(d), altura(1), izq(NULL), der(NULL) {} 
         }; typedef nodoAVL* AVL;
 
+        AVLbalanceado() : raiz(NULL) {}
+
         AVL crear(T pieza){
             return new nodoAVL(pieza);
+        }
+
+        void altaP(T pieza){
+            altaP(raiz, pieza);
         }
 
         int altura(AVL a){
@@ -77,7 +83,7 @@ class AVLbalanceado{
                 a = rotacionDer(a, a->izq);
                 return;
             }
-            else if (balance < -1 && a->izq->catalogo < pieza) {
+            else if (balance < -1 && a->izq->dato < pieza) {
                 a->izq = rotacionIzq(a->izq, a->izq->der);
                 a = rotacionDer(a, a->izq);
                 return;
