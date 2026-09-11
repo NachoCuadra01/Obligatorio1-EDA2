@@ -8,8 +8,6 @@ using namespace std;
 template <class T>
 
 class AVLbalanceado{
-    private:
-    AVL raiz;
     public:
         struct nodoAVL {
             T dato;
@@ -17,6 +15,11 @@ class AVLbalanceado{
             int altura;
             nodoAVL(T d) : dato(d), altura(1), izq(NULL), der(NULL) {} 
         }; typedef nodoAVL* AVL;
+
+    private:
+        AVL raiz;
+
+    public:
 
         AVLbalanceado() : raiz(NULL) {}
 
