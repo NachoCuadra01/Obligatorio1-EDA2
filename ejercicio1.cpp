@@ -31,6 +31,14 @@ class AVLbalanceado{
             altaP(raiz, pieza);
         }
 
+        bool buscar(T pieza){
+            return buscar(raiz, pieza);
+        }
+
+        T* rango(T desde, T hasta, int& cant){
+            return rango(raiz, desde, hasta, cant);
+        }
+
         int altura(AVL a){
             if (!a) return 0;
             return a->altura;
@@ -102,23 +110,37 @@ class AVLbalanceado{
         }
 
 
-        T* rangoAux(AVL a, T&* arr, T desde, T hasta, int& pos){
-            if (a->dato > desde) rango(a->izq, desde, hasta);
+
+        int dimension(AVL a, T desde, T hasta){
+            if (!a) return 0;
+            int cant = 0;
+            if (a->dato > desde) cant += dimension(a->izq, desde, hasta);
+            if (a->dato >= desde && a->dato <= hasta) cant++;
+            if(a->dato < hasta) cant += dimension(a->der, desde, hasta);
+            return cant;
+        }
+
+
+        void rangoAux(AVL a, T* arr, T desde, T hasta, int& pos){
+            if (!a) return; 
+            if (a->dato > desde) rangoAux(a->izq, arr, desde, hasta, pos);
 
             if (a->dato >= desde && a->dato <= hasta){
                 arr[pos] = a->dato;
                 pos++;
             }
 
-            if (a->dato < hasta) rango(a->der, desde, hasta);
+            if (a->dato < hasta) rangoAux(a->der, arr, desde, hasta, pos);
+
         }
         
 
-        T* rango(AVL a, T desde, T hasta){
-            if (!a) return NULL;
-            T* arr = new T[hasta-desde];
+        T* rango(AVL a, T desde, T hasta, int& cant){
+            cant = dimension(a, desde, hasta);
+            T* arr = new T[cant];
             int pos = 0;
-            return rangoAux(a, arr, desde, hasta, pos);
+            rangoAux(a, arr, desde, hasta, pos);
+            return arr;
         }
             
     
@@ -141,18 +163,53 @@ class AVLbalanceado{
                     cin >> c;
                     monedas.altaP(c);
                 }
+                else {
+                    string c;
+                    cin >> c;
+                    pinturas.altaP(c);
+                }
             }
-            
-            
-            
+            else if (col1 == "BUSCAR"){
+                if (col2 == "M"){
+                    int c;
+                    cin >> c;
+                    bool esta = monedas.buscar(c);
+                    if (esta) cout << "si" << "\n";
+                    else cout << "no" << "\n";
+                }
+                else {
+                    string c;
+                    cin >> c;
+                    bool esta = pinturas.buscar(c);
+                    if (esta) cout << "si" << "\n";
+                    else cout << "no" << "\n";
+                }
+            }
+            else {
+                if (col2 == "M"){
+                    int desde;
+                    int hasta;
+                    cin >> desde >> hasta;
+                    int cant;
+                    int* estan = monedas.rango(desde, hasta, cant);
+                    for (int i = 0; i < cant; i++){
+                        cout << estan[i] << "\n";
+                    }
+                }
+                else {
+                    string desde;
+                    string hasta;
+                    cin >> desde >> hasta;
+                    int cant;
+                    string* estan = pinturas.rango(desde, hasta, cant);
+                    for(int i = 0; i < cant; i++){
+                        cout << estan[i] << "\n";
+                    }
+                }
 
-
-
-
-
-
+            }
+ 
         }
-
         return 0;
     }
 
