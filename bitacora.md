@@ -27,9 +27,9 @@ Nos encontramos que teniamos crear una raiz general la cual cargar y no crear un
 - Se compiló y quedó aprobado el ejercicio 1 y comenzamos con la justificación de los órdenes de las funciones de Alta, Buscar y Rango.
 Se leyó la proposición del ejercicio 2, también se pensó las formas necesarias para resolver, ej: el constructor del hash tendría un int que contiene el valor del cajón más largo.
 
-## 2026-XX-04 — En conjunto
-- ...
-
+## 2026-09-18 — En conjunto
+-  Se empezó a trabajar con el ejercicio 2, donde creamos el hash abierto y construimos las funciones pedidas. Tuvimos discusiones de cómo hacer index, ya que pensamos el caso que una combinación de letras de un largo puede tener la suma en tabla ascii que otra combinación de letras de distinto largo. Luego de haber resuelto eso, continuamos resolviendo las funciones bajo las restricciones mencionadas.
+Finalmente, se compiló y quedó aprobado el ejercicio 2 y realizamos la justificación de los órdenes de las funciones de registro, consulta y la última línea.
 
 ## 2014-04-27 — En conjunto
 

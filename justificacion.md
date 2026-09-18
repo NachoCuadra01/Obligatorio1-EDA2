@@ -20,10 +20,11 @@ Como RangoAux es O(log K + R) y dimensión también, y ambas son independientes 
 
 ## Ejercicio 2
 - Registrar y Consultar: O(L)cp , siendo L el largo de la palabra involucrada.
-/ Justificación: Ambas llamadas tienen un esquema similar; contienen casi todo líneas de código de orden constante, menos el llamado de index, que es la función que permite hallar la posición o el "bucket" al que corresponde la palabra. Y esta función es la que contiene el O(L), ya que recorre el largo de la palabra en cuestión para 
+/ Justificación: Ambas llamadas tienen un esquema similar; contienen casi todo líneas de código de orden constante, menos el llamado de index, que es la función que permite hallar la posición o el "bucket" al que corresponde la palabra. Y esta función es la que contiene el O(L), ya que tiene que recorrer el largo de la palabra en cuestión para encontrar el bucket. Después de eso, todo lo que tiene Registrar es de O(1): se crea un nuevo nodo, se le asigna sus características, y se agrega al principio de la lista de buckets correspondiente. A su vez, consultar también llama a index, y el resto del código es de orden constante; retorna 0 o la cantidad que tiene el primer nodo, hecho así para que el primer nodo tenga la cantidad de elementos desde ahí para adelante.
+Así ambas funciones quedan de O(L)
 
 - Úlitma línea de salida: O(1) pc
-/ Justificación: ...
+/ Justificación: La última línea llama a 2 funciones: una es cantCajones y otra es cajonMasLargo. Ambas tienen acceso a información general de la tabla hash, donde si la tabla es vacía se retorna 0, y sino se retorna t->cantCajones y t->max respectivamente.
 
 ## Ejercicio 3
 - Sin restricciones de órdenes. / Justificación: ...
