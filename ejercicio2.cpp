@@ -16,11 +16,10 @@ class HashAbierto{
 
         struct hash{
             cajon** inventario;
-            int indMax;
             int max;
             int cantCajones;
             int cota;
-            hash(int cota) : cota(cota), indMax(-1),max(0), cantCajones(0), inventario(NULL) {} 
+            hash(int cota) : cota(cota),max(0), cantCajones(0), inventario(NULL) {} 
         }; 
         typedef hash* Hash;
 
@@ -40,6 +39,14 @@ class HashAbierto{
 
         int consulta(string pal){
             return consulta(tabla, pal);
+        }
+
+        int cantCajones(){
+            return cantCajones(tabla);
+        }
+
+        int cajonMasLargo(){
+            return cajonMasLargo(tabla);
         }
     
 
@@ -65,14 +72,13 @@ class HashAbierto{
             cajon* c = new cajon;
             c->palabra = pal;
             if(t->inventario[pos])c->cant = 1 + t->inventario[pos]->cant;
-            else c->cant = 1;
+            else {
+                c->cant = 1;
+                t->cantCajones++;
+            }
             c->sig = t->inventario[pos];
             t->inventario[pos] = c;
-            t->cantCajones++;
-            if(t->inventario[pos]->cant > t->max){
-                t->max = t->inventario[pos]->cant;
-                t->indMax = pos;
-            }
+            if(t->inventario[pos]->cant > t->max) t->max = t->inventario[pos]->cant;
         };
 
         int consulta(Hash t, string pal){
@@ -83,6 +89,15 @@ class HashAbierto{
             
         }
 
+        int cantCajones(Hash t){
+            if(!t) return 0;
+            return t->cantCajones;
+        }
+
+        int cajonMasLargo(Hash t){
+            if(!t)return 0;
+            return t->max;
+        }
 
 };
 
@@ -106,5 +121,5 @@ int main(){
         cin >> pal;
         tabla.consulta(pal);
     }
-    return 0;
+    cout << tabla.cantCajones() << ' ' << tabla.cajonMasLargo();    //ÚLTIMA LÍNEA
 }

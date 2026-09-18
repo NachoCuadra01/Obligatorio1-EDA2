@@ -19,7 +19,11 @@ A su vez, la función dimensión también tiene O(log K + R). Es una función qu
 Como RangoAux es O(log K + R) y dimensión también, y ambas son independientes entre sí, quedará en O(2.(log K + R)); por lo que el 2 se puede sacar para afuera del orden y, al ser tendiente al infinito, se puede obviar. El resto de código en la función Rango es de O(1), así que, de esta forma, Rango quedará con O(2.(log K + R)) ~ O(log K+R) .
 
 ## Ejercicio 2
-- Sin restricciones de órdenes. / Justificación: ...
+- Registrar y Consultar: O(L)cp , siendo L el largo de la palabra involucrada.
+/ Justificación: Ambas llamadas tienen un esquema similar; contienen casi todo líneas de código de orden constante, menos el llamado de index, que es la función que permite hallar la posición o el "bucket" al que corresponde la palabra. Y esta función es la que contiene el O(L), ya que recorre el largo de la palabra en cuestión para 
+
+- Úlitma línea de salida: O(1) pc
+/ Justificación: ...
 
 ## Ejercicio 3
 - Sin restricciones de órdenes. / Justificación: ...
