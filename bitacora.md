@@ -21,14 +21,14 @@
 
 ## 2026-09-12 — En conjunto
 - Empezamos con la implemetacion del main para poder leer los datos. Al momento de probar los metodos creados nos encontramos varios bugs.
-Nos encontramos que teniamos crear una raiz general la cual cargar y no crear una nueva en cada metodo. Luego en rango tuvimos problemas con el tema de ordenes, la cual resolvimos preguntandole a la inteligencia artificial.
+Nos encontramos que teniamos crear una raiz general la cual cargar y no crear una nueva en cada metodo. Luego en rango tuvimos problemas con el tema de ordenes, la cual resolvimos preguntandole a la inteligencia artificial qué convenía hacer para mantener el orden pedido.
 
 ## 2026-09-14 — En conjunto
 - Se compiló y quedó aprobado el ejercicio 1 y comenzamos con la justificación de los órdenes de las funciones de Alta, Buscar y Rango.
 Se leyó la proposición del ejercicio 2, también se pensó las formas necesarias para resolver, ej: el constructor del hash tendría un int que contiene el valor del cajón más largo.
 
 ## 2026-09-18 — En conjunto
--  Se empezó a trabajar con el ejercicio 2, donde creamos el hash abierto y construimos las funciones pedidas. Tuvimos discusiones de cómo hacer index, ya que pensamos el caso que una combinación de letras de un largo puede tener la suma en tabla ascii que otra combinación de letras de distinto largo. Luego de haber resuelto eso, continuamos resolviendo las funciones bajo las restricciones mencionadas.
+-  Se empezó a trabajar con el ejercicio 2, donde creamos el hash abierto y construimos las funciones pedidas. Tuvimos discusiones de cómo hacer index, ya que pensamos el caso que una combinación de letras de un largo puede tener la suma en tabla ascii que otra combinación de letras de distinto largo. Se le consultó a la IA, específicamente a Claude, qué convenía hacer para hallar un índice único, nos devolvió que lo ideal sería hacer la sumatoria de cada letra en la tabla ascii al cuadrado, para minimizar la probabilidad de que 2 diferentes palabras de distinto largo coincidan. Luego de haber resuelto eso, continuamos resolviendo las funciones bajo las restricciones mencionadas.
 Finalmente, se compiló y quedó aprobado el ejercicio 2 y realizamos la justificación de los órdenes de las funciones de registro, consulta y la última línea.
 
 ## 2014-04-27 — En conjunto
