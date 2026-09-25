@@ -19,7 +19,10 @@ class HashAbierto{
             int max;
             int cantCajones;
             int cota;
-            hash(int cota) : cota(cota),max(0), cantCajones(0), inventario(NULL) {} 
+            hash(int cota) : cota(cota),max(0), cantCajones(0) {
+                inventario = new cajon*[cota];
+                for (int i = 0; i < cota; i++) inventario[i] = NULL;           
+            }
         }; 
         typedef hash* Hash;
 
@@ -63,7 +66,7 @@ class HashAbierto{
             return abs(clave % t->cota);
         };
 
-        void registro(Hash t, string pal, int cota){
+        void registro(Hash& t, string pal, int cota){
             if(!t){
                 Hash nuevo = crear(cota);
                 t = nuevo;
@@ -85,8 +88,7 @@ class HashAbierto{
             if (!t) return 0;
             int pos = index(t, clave(pal));
             if (pos == -1) return 0;
-            return t->inventario[pos]->cant;
-            
+            return t->inventario[pos]->cant;    
         }
 
         int cantCajones(Hash t){
@@ -119,7 +121,10 @@ int main(){
     for(int i = 0; i < consulta; i++){
         string pal;
         cin >> pal;
-        tabla.consulta(pal);
+        int c = tabla.consulta(pal);
+        cout << c;
     }
+    
     cout << tabla.cantCajones() << ' ' << tabla.cajonMasLargo();    //ÚLTIMA LÍNEA
+
 }
