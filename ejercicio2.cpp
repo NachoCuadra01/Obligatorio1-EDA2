@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <limits>
+#include <cstdlib> 
 
 using namespace std;
 
@@ -10,7 +11,7 @@ class HashAbierto{
     public:
         struct cajon{
             cajon* sig;
-            string palabra;
+            int clavePalabra; //ahora guardamos la clave y no la palabra en si, sino que si la clave que representa cada string
             int cant;
         };
 
@@ -54,11 +55,11 @@ class HashAbierto{
     
 
         int clave(string palabra){ //acordarse de autoria con claude y bitacora
-            int clave = 0;
-            for (int  i = 0; i < palabra.length(); i++){
-                clave += pow(palabra[i], 2);
+            int key = 0;
+            for (int  i = 0; i < (int)palabra.length(); i++){
+                key += palabra[i] * palabra[i];
             }
-            return clave;
+            return key;
         }
 
         int index(Hash t, int clave){
@@ -66,29 +67,42 @@ class HashAbierto{
             return abs(clave % t->cota);
         };
 
-        void registro(Hash& t, string pal, int cota){
+        void registro(Hash& t, string pal, int cota){ //corregido con claude para autoria y esas mierdas
             if(!t){
                 Hash nuevo = crear(cota);
                 t = nuevo;
             }
-            int pos = index(t, clave(pal));
-            cajon* c = new cajon;
-            c->palabra = pal;
-            if(t->inventario[pos])c->cant = 1 + t->inventario[pos]->cant;
-            else {
-                c->cant = 1;
-                t->cantCajones++;
+            int key = clave(pal);
+            int pos = index(t, key);
+            cajon* c = t->inventario[pos];
+            while (c){
+                if (c->clavePalabra == key){ 
+                    c->cant ++;
+                    if (c->cant > t->max) t->max = c->cant;
+                    return;
+                }
+                c = c->sig;
             }
-            c->sig = t->inventario[pos];
-            t->inventario[pos] = c;
-            if(t->inventario[pos]->cant > t->max) t->max = t->inventario[pos]->cant;
+            cajon* nuevo = new cajon;
+            nuevo->clavePalabra = key;
+            nuevo->cant = 1;
+            nuevo->sig = t->inventario[pos];
+            t->inventario[pos] = nuevo;
+            t->cantCajones++;
+
+            if(nuevo->cant > t->max) t->max = nuevo->cant;
         };
 
         int consulta(Hash t, string pal){
             if (!t) return 0;
-            int pos = index(t, clave(pal));
-            if (pos == -1) return 0;
-            return t->inventario[pos]->cant;    
+            int key = clave(pal);
+            int pos = index(t, key);
+            cajon* c = t->inventario[pos];
+            while(c){
+                if (c->clavePalabra == key) return c->cant;
+                c = c->sig;
+            }    
+            return 0;
         }
 
         int cantCajones(Hash t){
@@ -121,8 +135,7 @@ int main(){
     for(int i = 0; i < consulta; i++){
         string pal;
         cin >> pal;
-        int c = tabla.consulta(pal);
-        cout << c;
+        cout <<  tabla.consulta(pal) << '\n'; 
     }
     
     cout << tabla.cantCajones() << ' ' << tabla.cajonMasLargo();    //ÚLTIMA LÍNEA
