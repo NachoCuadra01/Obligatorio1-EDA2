@@ -124,7 +124,6 @@ int main(){
     HashAbierto tabla;
     int x;
     cin >> x;
-    //tabla.crear(x);
     for (int i = 0; i < x; i++){
         string pal;
         cin >> pal;
