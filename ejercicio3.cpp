@@ -25,13 +25,13 @@ class HeapMin {
         }
 
         void hundir(int*&array, int pos){
-            if(!array || pos>=(largo / 2)) return;
+            if(!array || pos * 2 >= largo) return;
             int a = array[pos];
             int posH1 = pos*2; 
             int posH2=  pos*2 + 1;
             int posMin;
-            if(array[posH1] < array[posH2]) posMin = posH1;
-            else posMin = posH2;
+            if(posH2 < largo && array[posH2] < array[posH1]) posMin = posH2;
+            else posMin = posH1;
             if(a>array[posMin]){
                 array[pos] = array[posMin];
                 array[posMin] = a;
@@ -43,8 +43,8 @@ class HeapMin {
             if (!array) return;
             array[1] = array[largo - 1];
             largo--;
-            int* nuevo = new int[largo];
-            for (int i = 1; i < largo-1; i++){
+            int* nuevo = new int[largo + 1];
+            for (int i = 1; i < largo; i++){
                 nuevo[i] = array[i];
             }
             delete[] array;
@@ -58,25 +58,38 @@ class HeapMin {
             swap(array, pos);
         }
 
-        void consolidar(int* array){
-            if(largo<2) return;
+        void consolidar(int*& array){
+            if(largo < 3) return;
             int valor1 = array[1];
-            int valor2 = min(array[2],array[3]);
+            int valor2;
+            if (largo > 3) valor2 = min(array[2], array[3]);
+            else valor2 = array[2];
             int costo = valor1 + valor2;
             total += costo;
             eliminar(array);
             eliminar(array);
+            agregar(array, costo, largo);
+            largo++;
+            consolidar(array);
         }
 
-}
-
-
-
-
+};
 
 
 
 int main() {
-    // TODO
+    HeapMin heap;
+    int cantArchivos;
+    cin >> cantArchivos;
+    heap.largo = cantArchivos+1;
+    heap.array = new int[cantArchivos+1];
+    for(int i = 1; i <= cantArchivos; i++){
+        int tamArchivo;
+        cin >> tamArchivo;
+        heap.agregar(heap.array, tamArchivo, i);
+    }
+    heap.consolidar(heap.array);
+    cout << heap.total;
+    delete[] heap.array;
     return 0;
 }
