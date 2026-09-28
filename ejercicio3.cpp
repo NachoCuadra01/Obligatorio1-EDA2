@@ -13,7 +13,7 @@ class HeapMin {
 
 
          void swap(long long*& array, int pos){
-            int a = array[pos];
+            long long a = array[pos];
             while (pos >= 2){
                 if(a < array[(pos)/2]){
                     array[pos] = array[(pos)/2];
@@ -26,7 +26,7 @@ class HeapMin {
 
         void hundir(long long*&array, int pos){
             if(!array || pos * 2 >= largo) return;
-            int a = array[pos];
+            long long a = array[pos];
             int posH1 = pos*2; 
             int posH2=  pos*2 + 1;
             int posMin;
