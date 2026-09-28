@@ -54,9 +54,9 @@ class HeapMin {
         }
        
 
-        void agregar(int*&array, int dato){
-            array[largo-1] = dato;
-            swap(array, largo-1);
+        void agregar(int*&array, int dato, int pos){
+            array[pos] = dato;
+            swap(array, pos);
         }
 
         void consolidar(int* array){
