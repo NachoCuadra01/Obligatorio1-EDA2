@@ -31,6 +31,18 @@ Se leyó la proposición del ejercicio 2, también se pensó las formas necesari
 -  Se empezó a trabajar con el ejercicio 2, donde creamos el hash abierto y construimos las funciones pedidas. Tuvimos discusiones de cómo hacer index, ya que pensamos el caso que una combinación de letras de un largo puede tener la suma en tabla ascii que otra combinación de letras de distinto largo. Se le consultó a la IA, específicamente a Claude, qué convenía hacer para hallar un índice único, nos devolvió que lo ideal sería hacer la sumatoria de cada letra en la tabla ascii al cuadrado, para minimizar la probabilidad de que 2 diferentes palabras de distinto largo coincidan. Luego de haber resuelto eso, continuamos resolviendo las funciones bajo las restricciones mencionadas.
 Finalmente, se compiló y quedó aprobado el ejercicio 2 y realizamos la justificación de los órdenes de las funciones de registro, consulta y la última línea.
 
+## 2026-09-20 — En conjunto
+- Se empezo con el ejercicio 3, planteando ideas y maneras de realizar el heapMin.
+
+## 2026-09-21 — En conjunto
+- se empezo a realizar el codigo del ejercicio 3, nos fuimos encontrando con varios problemas, los cuales fuimos solucionando algunos con claude y otros nos fuimos dando cuenta, uno de esos problemas fue que precisabamos un hundir y un swap, el cual uno va de arriba hacia abajo y otro de abajo hacia arriba.
+
+## 2026-09-28 — En conjunto
+- se continuo con el ejercicio 3 hasta finalizarlo, se logro finalizar pasando las pruebas y funcionando todo correcto. Se soluciono un bug con claude que la prueba numero dos nos daba 42 en ves de 44.
+
+
+
+
 ## 2014-04-27 — En conjunto
 
 ## 2021-07-15 — En conjunto
