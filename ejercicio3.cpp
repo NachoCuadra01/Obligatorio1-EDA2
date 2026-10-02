@@ -12,7 +12,7 @@ class HeapMin {
         int largo;
 
 
-         void swap(long long*& array, int pos){
+        void swap(long long*& array, int pos){
             long long a = array[pos];
             while (pos >= 2){
                 if(a < array[(pos)/2]){
