@@ -5,9 +5,16 @@
 
 using namespace std;
 
+
+
 class OrdenCompilacion{
     public:
 
+    struct Nodo {
+        int dato;
+        Nodo* siguiente;
+        Nodo(int d) : dato(d), siguiente(NULL) {}
+    };
     struct modulo {
         int prioridad;
         int numero;
@@ -20,11 +27,12 @@ class OrdenCompilacion{
         heapMin (int l) : largo(l+1), cantVertices(0){
                 array = new modulo[l+1];
                 for (int i = 1; i < largo; i++){
-                    array[i].numero = i;
-                    array[i].prioridad = -1;   
+                    array[i].numero = -1;
+                    array[i].prioridad = INT_MAX;   
                 }         
             }
     }; 
+
 
     void swap(heapMin& h, int pos){
             if(pos>= h.largo) return;
@@ -81,41 +89,46 @@ class OrdenCompilacion{
         }
 
 
-        void agregar(heapMin& h, int prioridad, int pos){
-            h.array[pos].prioridad = prioridad;
-            swap(h, pos);
+        void agregar(heapMin& h, int prioridad, int numero){
+            h.array[h.largo-1].numero = numero;
+            h.array[h.largo-1].prioridad = prioridad;
+            swap(h, h.largo-1);
             h.cantVertices++;
         }
 
-        void compilador(int largo, int* ascendientes, int* prioridades){
+        void compilador(int largo, int* ascendientes, int* prioridades, Nodo** vecinos){
             heapMin modulos(largo-1);
-            for (int i = 1; i < largo; i++){
-                if(ascendientes[i] == 0){
-                    agregar(modulos, prioridades[i], i);
-                    while(modulos.cantVertices>0){
-                        
-                    }
-                }
-            }
-                       
-            
-            
-            new minHeap(agregar solo a los listos)
-            me llevo al menor prioridad
-            actualizamos listos
-            si hay alguno nuevo, agregar al minHeap
-            seguir siguiendo
+            int* orden = new int[largo-1];
+            int cant = 0;
 
+            for (int i = 1; i < largo; i++){
+                if(ascendientes[i] == 0) agregar(modulos, prioridades[i], i);           
+            }
+            
+            while(modulos.cantVertices > 0){
+                int v = eliminar(modulos); 
+                Nodo* vec = vecinos[v];
+                orden[cant] = v;
+                cant++;
+                while (!vec){
+                    ascendientes[vec->dato]--;
+                    if(ascendientes[vec->dato] == 0) agregar (modulos, prioridades[vec->dato], vec->dato); 
+                    vec = vec->siguiente;
+                }
+                
+                
+            }
+            if(cant!= largo-1) cout << 'ciclo';
+            else for(int i = 0; i < largo-1; i++) cout << orden[i] << '\n';
         }
 
 
-}
+};
 
-int main()
-{
-    // TODO
-
+int main(){
+    
     //int* prio = new int[largo+1]();
+    //int* ascendientes
     // hacer que sume uno por cada padre
     return 0;
 }

@@ -41,7 +41,7 @@ Finalmente, se compiló y quedó aprobado el ejercicio 2 y realizamos la justifi
 - se continuo con el ejercicio 3 hasta finalizarlo, se logro finalizar pasando las pruebas y funcionando todo correcto. Se soluciono un bug con claude que la prueba numero dos nos daba 42 en vez de 44.
 
 
-
+AGREGAR EN LA BITACORA QUE DISCUTIMOS CON HOLIS HACER MATRIZ PERO CAMBIAMOS A TRIPLE ARRAY PORQUE NOS CAGABA EL ORDEN 
 
 ## 2014-04-27 — En conjunto
 
