@@ -38,10 +38,17 @@ Finalmente, se compiló y quedó aprobado el ejercicio 2 y realizamos la justifi
 - se empezo a realizar el codigo del ejercicio 3, nos fuimos encontrando con varios problemas, los cuales fuimos solucionando algunos con claude y otros nos fuimos dando cuenta, uno de esos problemas fue que precisabamos un hundir y un swap, el cual uno va de arriba hacia abajo y otro de abajo hacia arriba.
 
 ## 2026-09-28 — En conjunto
-- se continuo con el ejercicio 3 hasta finalizarlo, se logro finalizar pasando las pruebas y funcionando todo correcto. Se soluciono un bug con claude que la prueba numero dos nos daba 42 en vez de 44.
+- se continuo con el ejercicio 3 hasta finalizarlo, se logro finalizar pasando las pruebas y funcionando todo correcto. Se soluciono un bug con claude que la prueba numero dos nos daba 42 en vez de 44. Tambien nos dimos cuenta que no podiamos usar int ya que el resultado puede sobre pasar 32 bits entonces necesitabamos usar otro tipo, asi que usamos long long.
 
 
-AGREGAR EN LA BITACORA QUE DISCUTIMOS CON HOLIS HACER MATRIZ PERO CAMBIAMOS A TRIPLE ARRAY PORQUE NOS CAGABA EL ORDEN 
+## 2026-10-2 — En conjunto
+- Arrancamos leyendo el ejercicio 4, y planteando los structs correspondientes. Importamos las funciones correspondientes del ejercicio 3 sobre el heap. Pensamos en hacer una matriz para los vecinos, lo discutimos con el profe y nos dijo que era buena idea, asi que implementa.
+
+## 2026-10-09 — En conjunto
+- Seguimos con el ejercicio 4, hasta finalizarlo. En vez de continuar con el ejercicio 5, seguimos con la justificacion.
+
+
+
 
 ## 2014-04-27 — En conjunto
 
