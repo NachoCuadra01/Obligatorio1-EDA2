@@ -29,13 +29,28 @@ Justificación: La última línea llama a 2 funciones: una es cantCajones y otra
 ## Ejercicio 3
 - Consolidar O(N logN pc), siendo N la cantidad de archivos.  
 Justificación: Casi todo el código de Consolidar es de O(1), a excepción del "eliminar" , "agregar"; y el while que los contiene. Dichas funciones tienen O(1) y un llamado a "hundir" y "swap" respectivamente, ambas de O(log N) en su peor caso, ya que son funciones que dividen al árbol en 2, luego esa parte se divide de nuevo y así sucesivamente. El peor caso para ambas funciones es que se divida de principio a fin (o de fin a principio para swap), por eso log N.
-En resumen, todo lo que está dentro del while es de O(2.log(N)) ~ O(log N). Antes de empezar el while hay N elementos y luego N-1, y se reitera el while hasta que hayan 2 (largo>=3 para no usar la posición 0). Así, se repite N-2 veces (es decir, tiende a N) la iteración del while, haciendo que quede O(N. log N).
+En resumen, todo lo que está dentro del while es de O(2.log(N)) ~ O(log N). Antes de empezar el while hay N elementos y luego N-1, y se reitera el while hasta que hayan 2 elementos (largo>=3 para no trabajar con la posición 0). Así, se repite N-1 veces (es decir, tiende a N) la iteración del while, haciendo que quede O(N. log N).
 
 - Consolidar Orden espacial O(N): Para que esta función sea de O(N) espacial, debería guardar un elemento de cada uno de los N archivos del heap. Lo cual cumple, ya que se agregan en el heap los N elementos y luego se van consolidando como corresponde, también N veces.
 
 ## Ejercicio 4
-- Sin restricciones de órdenes. / Justificación: ...
+- Compilador: O((V+A)\log V) pc, siendo V la cantidad de módulos y A la cantidad de dependencias.  
+Justificación: Al igual que en el ejercicio 3, las funciones "eliminar", "agregar", "hundir" y "swap" tienen complejidad O(log V) en el peor caso. Esto se mantiene porque seguimos trabajando con un heap binario; la única diferencia es que se agregaron nuevas condicionales para determinar cuándo realizar los intercambios, sin modificar la altura del heap ni su complejidad.
+
+Nuestra función utiliza el algoritmo de Kahn, manteniendo el orden requerido mediante un heap mínimo. Primero, el "for" recorre los V vértices y agrega al heap aquellos que no tienen ascendientes. En el peor caso, se podrían agregar los V vértices, con un costo de O(V log V).
+
+Luego, dentro del "while", se elimina un vértice del heap en cada iteración. Como cada vértice se agrega como máximo una vez y se elimina como máximo una vez, esta parte tiene un costo total de O(V log V).
+
+Por otro lado, para cada vértice eliminado, se recorren sus vecinos. Como cada dependencia se recorre exactamente una vez, el costo total de estos recorridos es O(A). Sin embargo, cuando el número de ascendientes de un vecino llega a cero, este se agrega al heap, lo que puede ocurrir como máximo una vez por vértice y representa un costo total de O(V log V).
+
+Por lo tanto, sumando los costos, obtenemos O(V log V + V log V + A + V log V), que se simplifica a O((V+A) log V).
+
+- Compilador Orden espacial O(V+A): hay varias estructuras para esta función; la implementación del heap mínimo, los arrays de "orden", "acendientes"  y "prioridades" son todos de O(V), ya que todos pueden almacenar hasta V datos. Por su parte, la lista de adyacencia de "vecinos", tiene O(V+A), ya que almacena un puntero por vértice y un nodo por dependencia. Así, la sumatoria se simplifica en O(V+A).
 
 ## Ejercicio 5
-- Sin restricciones de órdenes. / Justificación: ...
+- Kruskal O(E logE) pc, siendo E la cantidad de senderos.
+Justificación: ...
+
+- Kruskal Orden espacial O(V+E):
+
 
