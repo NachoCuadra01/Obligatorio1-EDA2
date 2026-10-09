@@ -28,13 +28,10 @@ Justificación: La última línea llama a 2 funciones: una es cantCajones y otra
 
 ## Ejercicio 3
 - Consolidar O(N logN pc), siendo N la cantidad de archivos.  
-Justificación: Casi todo el código de Consolidar es de O(1), a excepción del "eliminar" , "agregar"; y el while que los contiene. 
+Justificación: Casi todo el código de Consolidar es de O(1), a excepción del "eliminar" , "agregar"; y el while que los contiene. Dichas funciones tienen O(1) y un llamado a "hundir" y "swap" respectivamente, ambas de O(log N) en su peor caso, ya que son funciones que dividen al árbol en 2, luego esa parte se divide de nuevo y así sucesivamente. El peor caso para ambas funciones es que se divida de principio a fin (o de fin a principio para swap), por eso log N.
+En resumen, todo lo que está dentro del while es de O(2.log(N)) ~ O(log N). Antes de empezar el while hay N elementos y luego N-1, y se reitera el while hasta que hayan 2 (largo>=3 para no usar la posición 0). Así, se repite N-2 veces (es decir, tiende a N) la iteración del while, haciendo que quede O(N. log N).
 
-O swap = log N pc
-O hundir = log N pc
-
-
-- Consolidar Orden espacial O(N): Para que esta función sea de O(N) espacial, debería guardar un elemento de cada uno de los N archivos del heap. Lo cual cumple, ya que se agregan en el heap los N elementos y luego se van consolidando como corresponde.
+- Consolidar Orden espacial O(N): Para que esta función sea de O(N) espacial, debería guardar un elemento de cada uno de los N archivos del heap. Lo cual cumple, ya que se agregan en el heap los N elementos y luego se van consolidando como corresponde, también N veces.
 
 ## Ejercicio 4
 - Sin restricciones de órdenes. / Justificación: ...
