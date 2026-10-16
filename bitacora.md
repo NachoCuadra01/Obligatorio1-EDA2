@@ -47,6 +47,9 @@ Finalmente, se compiló y quedó aprobado el ejercicio 2 y realizamos la justifi
 ## 2026-10-09 — En conjunto
 - Seguimos con el ejercicio 4, hasta finalizarlo. En vez de continuar con el ejercicio 5, seguimos con la justificacion.
 
+## 2026-10-16 — En conjunto
+- Con parte del algoritmo de MFset y de heap que hicimos en clase, lo pegamos a nuestro obligatorio y lo modificamos para poder satifacer nuestras necesidades. Luego de modificar implementamos la funcion costoMin. Despues de terminado la prueba 1 nos estaba dando 23 en vez de 16, por lo tanto le pregutnamos a claude que error teniamos que nos estaba haciendo sumar de mas. Lo que resulto que teniamos era que teniamos que correr el array de aristas desde la posicion 1 hasta la V, cuando tuvo que haber sido desde 0 hasta V-1.
+
 
 
 

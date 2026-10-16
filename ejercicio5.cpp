@@ -41,7 +41,7 @@ class HeapAristas {
         this->datos[b] = tmp;
     }
     void flotar(int pos) {
-        if (pos == 0) return; // es la raiz
+        if (pos == 1) return; // es la raiz
         int pad = posPadre(pos);
         if (this->datos[pos].costo < this->datos[pad].costo) {
             intercambiar(pos, pad);
@@ -50,10 +50,10 @@ class HeapAristas {
     }
     void hundir(int pos) {
         int izq = posHijoIzq(pos);
-        if (izq >= this->cantidad) return; // es una hoja
+        if (izq > this->cantidad) return; // es una hoja
         int menor = izq;
         int der = posHijoDer(pos);
-        if (der < this->cantidad && this->datos[der].costo < this->datos[menor].costo) {
+        if (der <= this->cantidad && this->datos[der].costo < this->datos[menor].costo) {
             menor = der;
         }
         if (this->datos[menor].costo < this->datos[pos].costo) {
@@ -147,9 +147,9 @@ long long costoMin(ParNacional* p){
     if(!p) return -1;
     int cont = 0;
     long long costoTotal = 0;
-    MFSet* conjunto = new MFSet(p->cantRefugios);
+    MFSet* conjunto = new MFSet(p->cantRefugios+1);
     HeapAristas* heap = new HeapAristas(p->maxSenderos);
-    for (int i = 1; i <= p->cantSenderos; i++){
+    for (int i = 0; i < p->cantSenderos; i++){
         heap->insertar(p->senderos[i]);
     }
     while(!heap->esVacio() && cont < p->cantRefugios-1){
@@ -158,7 +158,7 @@ long long costoMin(ParNacional* p){
         int conjuntoOrigen = conjunto->representante(a.origen);
         int conjuntoDestino = conjunto->representante(a.destino);
         if(conjuntoOrigen != conjuntoDestino){
-            cont ++;
+            cont++;
             conjunto->unir(conjuntoOrigen, conjuntoDestino);
             costoTotal += a.costo;
         }
