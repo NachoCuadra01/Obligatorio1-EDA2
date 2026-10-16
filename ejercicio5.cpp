@@ -78,7 +78,7 @@ class HeapAristas {
         flotar(this->cantidad);
     }
     Arista obtenerMinimo() {
-        return this->datos[0];
+        return this->datos[1];
     }
     void eliminarMinimo() {
         this->datos[1] = this->datos[this->cantidad];
@@ -124,13 +124,12 @@ class MFSet {
 };
 
 class ParNacional {
-    private:
+    public:
     int cantRefugios;
     int cantSenderos;
     int maxSenderos;
     Arista * senderos;
 
-    public:
     ParNacional(int v, int e) {
         this->cantRefugios = v;
         this->maxSenderos = e;
@@ -144,20 +143,28 @@ class ParNacional {
     }
 };
 
-long long costoMin(ParNacional* park){
-    if(!park) return -1;
+long long costoMin(ParNacional* p){
+    if(!p) return -1;
     int cont = 0;
     long long costoTotal = 0;
-    MFSet* conjunto = new MFSet(park->cantRefugios);
-    HeapAristas* heap = new HeapAristas(park->maxSenderos);
-    for (int i = 1; i <= park->maxSenderos; i++){
-        heap->insertar(park->senderos[i]);
+    MFSet* conjunto = new MFSet(p->cantRefugios);
+    HeapAristas* heap = new HeapAristas(p->maxSenderos);
+    for (int i = 1; i <= p->cantSenderos; i++){
+        heap->insertar(p->senderos[i]);
     }
-    while(!heap->esVacio() && cont < park->cantRefugios-1){
-        
+    while(!heap->esVacio() && cont < p->cantRefugios-1){
+        Arista a = heap->obtenerMinimo();
+        heap->eliminarMinimo();
+        int conjuntoOrigen = conjunto->representante(a.origen);
+        int conjuntoDestino = conjunto->representante(a.destino);
+        if(conjuntoOrigen != conjuntoDestino){
+            cont ++;
+            conjunto->unir(conjuntoOrigen, conjuntoDestino);
+            costoTotal += a.costo;
+        }
     }
-
-    return costoTotal;
+    if(cont != p->cantRefugios-1) return -1;
+    else return costoTotal;
 }
 
 
@@ -165,7 +172,21 @@ long long costoMin(ParNacional* park){
 
 int main()
 {
-    // TODO
+    int vertices;
+    int aristas;
+    cin >> vertices >> aristas; 
+    ParNacional* park = new ParNacional(vertices, aristas);
+    for (int i = 0; i < aristas; i++)
+    {
+        int origen;
+        int destino;
+        int costo;
+        cin >> origen >> destino>> costo;
+        park->agregarSendero(origen, destino, costo);
+    }
+    long long costoMinimo = costoMin(park);
+    if(costoMinimo == -1) cout << "imposible" << endl;
+    else cout << costoMinimo << endl;
     return 0;
 }
 
