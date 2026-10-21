@@ -22,3 +22,8 @@
 ## Ejercicio 5
 - Implementación íntegramente propia, sin fuentes externas.
 
+
+## Bitácora
+- Para mantener un formato .md acorde y para la corrección de las faltas de ortografía, le mandamos el siguiente prompt:  
+"Puedes no cambiar nada? Solo corrige los tildes y ponlo acorde para formato .md. Gracias" 
+- https://chatgpt.com/share/6ad915c0-2964-83e8-af01-d54345a67c44

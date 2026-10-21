@@ -85,6 +85,11 @@ class HeapAristas {
         this->cantidad --;
         hundir(1);
     }
+
+    void destruir(){
+        delete [] this->datos;
+        this->datos = NULL;
+    }
 };
 
 class MFSet {
@@ -121,6 +126,13 @@ class MFSet {
         }
         return true;
     }
+
+    void destruir(){
+        delete [] this->elementos;
+        this->elementos = NULL;
+        delete[] this->padre;
+        this->padre = NULL; 
+    }
 };
 
 class ParNacional {
@@ -140,6 +152,11 @@ class ParNacional {
         if (this->cantSenderos == this->maxSenderos) return;
         this->senderos[this->cantSenderos] = Arista(origen, destino, costo);
         this->cantSenderos++;
+    }
+
+    void destruir(){
+        delete [] this->senderos;
+        this->senderos = NULL;
     }
 };
 
@@ -163,6 +180,8 @@ long long costoMin(ParNacional* p){
             costoTotal += a.costo;
         }
     }
+    heap->destruir();
+    conjunto->destruir();
     if(cont != p->cantRefugios-1) return -1;
     else return costoTotal;
 }
@@ -187,6 +206,7 @@ int main()
     long long costoMinimo = costoMin(park);
     if(costoMinimo == -1) cout << "imposible" << endl;
     else cout << costoMinimo << endl;
+    park->destruir();
     return 0;
 }
 

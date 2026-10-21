@@ -153,6 +153,16 @@
         }
 
         g.compilador(modulos+1, ascendentes, prioridad, vecinos);
-        
+        delete [] prioridad;
+        delete[] ascendentes;
+        for (int i = 0; i < modulos; i++) {
+            Nodo* ady = vecinos[i];
+            while (ady) {
+                Nodo* borrar = ady;
+                ady = ady->siguiente;
+                delete borrar;
+            }
+        }
+        delete[] vecinos;
         return 0;
     }
