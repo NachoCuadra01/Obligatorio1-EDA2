@@ -52,7 +52,7 @@ class HeapMin {
             swap(array, pos);
         }
 
-        void consolidar(long long*& array){ //contar que cambiamos de int a long long, y que cambiamos consolidar de recursivo a while porque no daba el orden
+        void consolidar(long long*& array){ 
             while(largo >= 3){
                 long long valor1 = array[1];
                 long long valor2;

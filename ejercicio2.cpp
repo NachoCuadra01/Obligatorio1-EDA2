@@ -11,7 +11,7 @@ class HashAbierto{
     public:
         struct cajon{
             cajon* sig;
-            int clavePalabra; //ahora guardamos la clave y no la palabra en si, sino que si la clave que representa cada string
+            int clavePalabra; 
             int cant;
         };
 
@@ -20,10 +20,10 @@ class HashAbierto{
             int max;
             int cantCajones;
             int cota;
-            hash(int cota) : cota(cota),max(0), cantCajones(0) {
+            hash(int cota) : cota(cota),max(0), cantCajones(0) { 
                 inventario = new cajon*[cota];
                 for (int i = 0; i < cota; i++) inventario[i] = NULL;           
-            }
+            } //Constructor sugerido por Claude
         }; 
         typedef hash* Hash;
 
@@ -54,10 +54,10 @@ class HashAbierto{
         }
     
 
-        int clave(string palabra){ //acordarse de autoria con claude y bitacora
+        int clave(string palabra){ 
             int key = 0;
             for (int  i = 0; i < (int)palabra.length(); i++){
-                key += palabra[i] * palabra[i];
+                key += palabra[i] * palabra[i]; //Generado por Claude
             }
             return key;
         }
@@ -67,7 +67,7 @@ class HashAbierto{
             return abs(clave % t->cota);
         };
 
-        void registro(Hash& t, string pal, int cota){ //corregido con claude para autoria y esas mierdas
+        void registro(Hash& t, string pal, int cota){ 
             if(!t){
                 Hash nuevo = crear(cota);
                 t = nuevo;
@@ -118,8 +118,6 @@ class HashAbierto{
 };
 
 
-
-
 int main(){
     HashAbierto tabla;
     int x;
@@ -137,6 +135,6 @@ int main(){
         cout <<  tabla.consulta(pal) << '\n'; 
     }
     
-    cout << tabla.cantCajones() << ' ' << tabla.cajonMasLargo();    //ÚLTIMA LÍNEA
+    cout << tabla.cantCajones() << ' ' << tabla.cajonMasLargo();  
 
 }

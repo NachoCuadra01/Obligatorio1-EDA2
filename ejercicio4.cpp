@@ -124,8 +124,6 @@
                 if(cant != largo-1) cout << "imposible" << endl;
                 else for(int i = 0; i < largo-1; i++) cout << orden[i] << '\n';
             }
-
-
     };
 
     int main(){
@@ -138,8 +136,6 @@
             cin >> x;
             prioridad[i] = x;
         }
-
-
         int* ascendentes = new int[modulos+1]();
         Nodo** vecinos = new Nodo*[modulos+1]();
 

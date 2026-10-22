@@ -8,8 +8,6 @@ using namespace std;
 #ifndef MFSET_H
 #define MFSET_H
 
-//DECIR QUE AGARRAMOS TODO ESTO DE LO QUE HICIMOS EN CLASE EN AUTORIA
-//ACLARAR QUE SOMOS MOGULES Y NOS DIMOS CUENTA DSP QUE PODÍAMOS HABER USADO ESTO EN EL EJ3 Y 4
 class Arista {
     public:
     int origen;
@@ -19,7 +17,6 @@ class Arista {
     Arista(): origen(0), destino(0), costo(0) {}
 };
 
-// MinHeap de aristas por costo: el minimo siempre esta en la posicion 1
 class HeapAristas {
     private:
     Arista * datos;
@@ -110,21 +107,21 @@ class MFSet {
     }
     int representante(int a) {
         if (a == this->padre[a])  return a;
-        this->padre[a] = representante(this->padre[a]); // compresion de caminos
+        this->padre[a] = representante(this->padre[a]); 
         return this->padre[a];
     }
-    bool unir(int a, int b) { // devuelve si pudo unir o no
+    void unir(int a, int b) { 
         int repA = representante(a);
         int repB = representante(b);
-        if (repA == repB)return false;
-        if (this->elementos[repA] > this->elementos[repB]) { //unión por altura
+        if (repA == repB)return;
+        if (this->elementos[repA] > this->elementos[repB]) { 
             this->padre[repB] = repA;
             this->elementos[repA] += this->elementos[repB];
         } else {
             this->padre[repA] = repB;
             this->elementos[repB] += this->elementos[repA];
         }
-        return true;
+        return;
     }
 
     void destruir(){
@@ -135,7 +132,7 @@ class MFSet {
     }
 };
 
-class ParNacional {
+class ParNacional{
     public:
     int cantRefugios;
     int cantSenderos;
@@ -186,11 +183,7 @@ long long costoMin(ParNacional* p){
     else return costoTotal;
 }
 
-
-
-
-int main()
-{
+int main(){
     int vertices;
     int aristas;
     cin >> vertices >> aristas; 

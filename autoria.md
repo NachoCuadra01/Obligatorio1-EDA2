@@ -11,7 +11,9 @@
 - Implementación íntegramente propia, sin fuentes externas.
 
 ## Ejercicio 2
-- Implementación íntegramente propia, sin fuentes externas.
+
+- Múltiples consultas sobre este ejercicio: elegir clave, recordar cómo se trabajaba con strings en lugar de chars, declarando cosas como punteros cuando no lo son, consultas sobre la suma de caracteres, etc.
+- https://claude.ai/share/e170e560-d205-4553-80bc-f22be6c148c3
 
 ## Ejercicio 3
 - Implementación íntegramente propia, sin fuentes externas.
@@ -23,7 +25,8 @@
 - Implementación íntegramente propia, sin fuentes externas.
 
 
-## Bitácora
-- Para mantener un formato .md acorde y para la corrección de las faltas de ortografía, le mandamos el siguiente prompt:  
-"Puedes no cambiar nada? Solo corrige los tildes y ponlo acorde para formato .md. Gracias" 
-- https://chatgpt.com/share/6ad915c0-2964-83e8-af01-d54345a67c44
+- Para la liberación de memoria de algunas estructuras no recordábamos cómo destruirlas de forma acorde, por lo que le mandamos múltiples prompts en este link: 
+- https://chatgpt.com/share/6ada688a-8540-83e9-9f53-d2abf75e61bf
+
+- Para mantener un formato .md acorde y para la corrección de las faltas de ortografía, le mandamos a chatGPT que reestructure la justificación, la bitácora, y la autoría.
+- https://chatgpt.com/share/6ada6c69-e190-83e8-969b-7176e05e1175 
