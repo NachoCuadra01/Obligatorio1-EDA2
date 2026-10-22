@@ -137,6 +137,6 @@ int main(){
         cout <<  tabla.consulta(pal) << '\n'; 
     }
     
-    cout << tabla.cantCajones() << ' ' << tabla.cajonMasLargo();    //ÚLTIMA LÍNEA
+    cout << tabla.cantCajones() << ' ' << tabla.cajonMasLargo();
 
 }
