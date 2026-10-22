@@ -39,22 +39,22 @@ class AVLbalanceado{
             return rango(raiz, desde, hasta, cant);
         }
 
-        int altura(AVL a){
+        int altura(AVL a){ //Realizado en laboratorio
             if (!a) return 0;
             return a->altura;
         }
         
 
-        void actualizarAltura(AVL& a) {
+        void actualizarAltura(AVL& a) { //Realizado en laboratorio
             if (!a) return;
             a->altura = 1 + max(altura(a->izq), altura(a->der));
         }    
 
-        int calcularBalance(AVL a) {
+        int calcularBalance(AVL a) { //Realizado en laboratorio
             return altura(a->der) - altura(a->izq);
         }
        
-        AVL rotacionIzq(AVL& A, AVL& B) {
+        AVL rotacionIzq(AVL& A, AVL& B) { //Realizado en laboratorio
             A->der = B->izq;
             B->izq = A;
             actualizarAltura(A);
@@ -62,7 +62,7 @@ class AVLbalanceado{
             return B;
         }
         
-        AVL rotacionDer(AVL& A, AVL& B) {
+        AVL rotacionDer(AVL& A, AVL& B) { //Realizado en laboratorio
             A->izq = B->der;
             B->der = A;
             actualizarAltura(A);
